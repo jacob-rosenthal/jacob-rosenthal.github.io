@@ -12,10 +12,13 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="favicon.ico">
+		<script src="assets/js/particles.min.js"> </script>
 	</head>
 	<body class="is-preload">
 
 		<!-- Wrapper-->
+		<div id="wrapper2">
+		</div>
 			<div id="wrapper">
 
 				<!-- Nav -->
@@ -57,8 +60,15 @@
 							</header>
 							<section>
 								<div class="row">
-									<div class="col-4 col-6-medium col-12-small">
-										<a href="https://www.oberlin.edu/news/chess-club-brings-home-fourth-trophy" class="image fit" target="_blank"><img src="images/chessclub.JPG" alt=""></a>
+									<div class="col-4 col-6-medium col-12-small image-container">
+										<a href="https://www.oberlin.edu/news/chess-club-brings-home-fourth-trophy" class="image fit" target="_blank">
+											<img src="images/chessclub.JPG" class="image-hover" alt="">
+												<div class="image-overlay">
+													<div class="image-text">
+													Chess club
+												</div>
+											</div>
+										</a>
 									</div>
 								</div>
 							</section>
@@ -76,14 +86,23 @@
 								</p>
 								<section>
 									<div class="row">
-										<div class="col-4 col-6-medium col-12-small">
-											<a href="https://doi.org/10.1093/gbe/evy061" class="image fit" target="_blank"><img src="images/polyploidy_pic.png" alt=""></a>
+											<div class="col-4 col-6-medium col-12-small image-container">
+												<a href="https://doi.org/10.1093/gbe/evy061" class="image fit" target="_blank">
+													<img src="images/polyploidy_pic.png" class="image-hover" alt="">
+													<div class="image-overlay">
+														<div class="image-text">
+																Metabolic network models
+																<!-- <div class="image-subtext"> Jacob  </div> -->
+														</div>
+													</div>
+												</a>
+											</div>
 										</div>
 										<!--
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
 										</div>
-										<div class="col-4 col-6-medium col-12-small">
+										<div class="col-4 col-6-medium col-12-small">Ó
 											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
@@ -96,7 +115,7 @@
 											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
 										</div>
 										-->
-									</div>
+
 								</section>
 							</article>
 
@@ -139,12 +158,20 @@
 
 			</div>
 
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+
+			particlesJS.load('wrapper2', 'assets/particles.json', function() {
+  					console.log('callback - particles.js config loaded');
+			});
+
+			</script>
 
 	</body>
 </html>
