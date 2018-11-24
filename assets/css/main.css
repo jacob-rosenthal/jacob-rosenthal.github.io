@@ -2231,7 +2231,5 @@ input, select, textarea {
 }
 
 .particles-js-canvas-el{
-	position: absolute;
-	top: 0;
-	left: 0;
+	position: fixed;
 }
