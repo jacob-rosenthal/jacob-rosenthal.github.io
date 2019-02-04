@@ -2199,7 +2199,7 @@ input, select, textarea {
 }
 
 .image-container:hover .image-overlay {
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .image-text {
