@@ -2236,3 +2236,55 @@ input, select, textarea {
 .particles-js-canvas-el{
 	position: fixed;
 }
+
+
+/* code for lichess widget. From https://rubenwardy.com/lichess_widgets/ */
+.lichess_widget {
+	font-family: "Open Sans","Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	display: inline-block;
+	margin: 2px;
+	padding: 5px 10px 7px 10px;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.lichess_widget img {
+	margin: 0 10px 0 0;
+	display: inline-block;
+	height: 20px;
+	vertical-align: middle;
+}
+.lichess_widget span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.lichess_long {
+	min-width: 220px;
+}
+
+.lichess_long hr {
+	margin: 6px 0 2px 0;
+	border: none;
+	height: 1px
+}
+
+/* Light Style */
+.lichess_theme_light.lichess_widget {
+	background: #EEE;
+	border: 1px solid #E0E0E0;
+	color: black;
+	font-size: 1em;
+}
+
+.lichess_theme_light.lichess_widget:hover {
+	background: #e0e0e0;
+}
+
+.lichess_theme_light.lichess_long hr {
+	background: #e0e0e0;
+}
+
+.lichess_theme_light.lichess_widget b {
+	font-weight: 800;
+}

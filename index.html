@@ -13,6 +13,8 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="favicon.ico">
 		<script src="assets/js/particles.min.js"> </script>
+		<!-- for embedding lichess widget. from https://rubenwardy.com/lichess_widgets/ -->
+		<script src="assets/js/lichess_widgets.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -56,19 +58,21 @@
 							</p>
 							<section>
 									<div class="row">
+
 										<div class="col-4 col-6-medium col-12-small image-container">
-											<a href="docs/phenotype_prediction_rosenthal.pdf" class="image fit" target="_blank">
-												<img src="images/r2_fig.png" class="image-hover" alt="">
+											<a href="https://doi.org/10.1158/1541-7786.MCR-20-0548" class="image fit" target="_blank">
+												<img src="images/metabolomics_figure_4.png" class="image-hover" alt="">
 												<div class="image-overlay">
 													<div class="image-text">
-														Phenotype Prediction
+														Prostate Cancer Metabolomics
 														<div class="image-subtext">
-															EPI 511 Final Project
+															Molecular Cancer Research 2020
 														</div>
 													</div>
 												</div>
 											</a>
 										</div>
+
 										<div class="col-4 col-6-medium col-12-small image-container">
 											<a href="https://doi.org/10.1016/j.cell.2019.11.020" class="image fit" target="_blank">
 												<img src="images/cdg_network.png" class="image-hover" alt="">
@@ -82,6 +86,8 @@
 												</div>
 											</a>
 										</div>
+
+
 										<div class="col-4 col-6-medium col-12-small image-container">
 											<a href="https://doi.org/10.1093/gbe/evy061" class="image fit" target="_blank">
 												<img src="images/polyploidy_pic.png" class="image-hover" alt="">
@@ -95,6 +101,22 @@
 												</div>
 											</a>
 										</div>
+
+										<div class="col-4 col-6-medium col-12-small image-container">
+											<a href="docs/phenotype_prediction_rosenthal.pdf" class="image fit" target="_blank">
+												<img src="images/r2_fig.png" class="image-hover" alt="">
+												<div class="image-overlay">
+													<div class="image-text">
+														Phenotype Prediction
+														<div class="image-subtext">
+															EPI 511 Final Project
+														</div>
+													</div>
+												</div>
+											</a>
+										</div>
+
+
 									</div>
 									<!--
 									<div class="col-4 col-6-medium col-12-small">
@@ -138,9 +160,14 @@
 											</div>
 										</a>
 									</div>
+
+									<div class="col-4 col-6-medium col-12-small image-container">
+										<script>lichess_widgets.my_profile_scores("light", "jacobswag", "");</script>
+									</div>
 								</div>
+
 							</section>
-							<iframe width=600 height=371 src="https://lichess.org/study/embed/61ddqU9k/JeDCHnJv" frameborder=0></iframe>
+
 						</article>
 
 						<!-- Work -->
@@ -179,7 +206,7 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; 2018 Jacob Rosenthal</li><li>Design: HTML5 UP</a></li>
+							<li>&copy; 2020 Jacob Rosenthal</li><li>Design: HTML5 UP</a></li>
 						</ul>
 					</div>
 
