@@ -2288,3 +2288,9 @@ input, select, textarea {
 .lichess_theme_light.lichess_widget b {
 	font-weight: 800;
 }
+
+/* specify colors for academicons. See https://stackoverflow.com/a/26158019 */
+
+a .ai {
+color: #777;
+}
