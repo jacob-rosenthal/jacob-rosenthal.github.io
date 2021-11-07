@@ -82,12 +82,12 @@ input, select, textarea {
 	}
 
 		/* to add space between rows. based on: https://stackoverflow.com/a/20096216 */
-		.margin5 { margin-bottom:5px}
-		.margin15 { margin-bottom:15px}
-		.margin20 { margin-bottom:20px}
-		.margin25 { margin-bottom:25px}
-		.margin30 { margin-bottom:30px}
-		.margin50 { margin-bottom:50px}
+		.margin5 { margin-bottom:5px; margin-top: 5px}
+		.margin15 {	margin-bottom:15px; margin-top: 15px}
+		.margin20 { margin-bottom:20px; margin-top: 20px}
+		.margin25 { margin-bottom:25px; margin-top: 25px}
+		.margin30 { margin-bottom:30px; margin-top: 30px}
+		.margin50 { margin-bottom:50px; margin-top: 50px}
 
 		.row > * {
 			box-sizing: border-box;
