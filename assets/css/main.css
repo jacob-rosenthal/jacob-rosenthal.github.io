@@ -31,12 +31,12 @@ footer, header, hgroup, menu, nav, section {
 
 
 a:link {
-  color: green;
+  color: #ff1ce5;
   background-color: transparent;
   text-decoration: none;
 }
 a:visited {
-  color: #ff1ce5;
+  color: rgb(0, 0, 255);
   background-color: transparent;
   text-decoration: none;
 }
@@ -51,6 +51,55 @@ a:active {
   text-decoration: underline;
 }
 
+/* Remove default link styles */
+.icon-link {
+  color: rgb(119, 119, 119);
+  text-decoration: none; /* Removes underline */
+}
+.icon-link:link {
+  color: rgb(119, 119, 119);
+  background-color: transparent;
+  text-decoration: none;
+}
+.icon-link:visited {
+  color: rgb(119, 119, 119);
+  background-color: transparent;
+  text-decoration: none;
+}
+.icon-link:hover {
+  color: #ff1ce5;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+/* fix tooltips */
+#nav a span {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%; /* Position tooltip above the icon */
+  left: 50%; /* Center tooltip */
+  display: flex; /* Flexbox for vertical alignment */
+  align-items: center; /* Center text vertically */
+  display: inline-block; /* Required for line-height alignment */
+  line-height: 1; /* Ensure consistent height */
+  font-family: "Source Sans Pro", Arial, sans-serif; /* Better font */
+  text-transform: none; /* Remove all caps */
+  padding: 0px 10px;
+  text-align: center; /* Center text horizontally */
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+#nav a:hover span {
+  visibility: visible;
+  opacity: 1;
+  /* background-color: #fff; 
+  color: #ff1ce5;  */
+}
 
 body {
 	line-height: 1;
