@@ -359,7 +359,7 @@
 			<script>
 				if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
 					// Only run on touch-screen devices
-					document.querySelectorAll('.hover-image, .image-container').forEach((link) => {
+					document.querySelectorAll('.hover-image').forEach((link) => {
 						let toggled = false;
 
 						link.addEventListener('click', (event) => {
@@ -373,8 +373,26 @@
 						}
 						});
 					});
+
+					document.querySelectorAll('.image-container').forEach((container) => {
+						let toggled = false; // Track the toggle state
+						container.addEventListener('click', (event) => {
+							const overlay = container.querySelector('.image-overlay');
+							const link = container.querySelector('a');
+
+							if (!toggled) {
+								event.preventDefault(); // Prevent navigation on first tap
+								overlay.style.opacity = '0.95'; // Show the overlay
+								toggled = true; // Update toggle state
+							} else {
+								toggled = false; // Reset toggle state
+								overlay.style.opacity = '0'; // Hide the overlay
+								window.location.href = link.href; // Navigate to the link
+							}
+						});
+					});
+
 					}
 			</script>
-
 	</body>
 </html>
