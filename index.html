@@ -89,6 +89,10 @@
 										<i class="fab fa-google-scholar fa-2x"></i>
 								</a>
 								&nbsp;&nbsp;
+								<a href="https://www.linkedin.com/in/jacob-rosenthal/" class="icon-link" target="_blank">
+										<i class="fab fa-linkedin fa-2x"></i>
+								</a>
+								&nbsp;&nbsp;
 								<a href="https://orcid.org/0000-0002-1767-1826" target="_blank" class="icon-link">
 									<i class="fab fa-orcid fa-2x"></i>
 								</a>
@@ -361,6 +365,7 @@
 					// Only run on touch-screen devices
 					document.querySelectorAll('.hover-image').forEach((link) => {
 						let toggled = false;
+						let timeoutId = null; // Store the timeout ID
 
 						link.addEventListener('click', (event) => {
 						if (!toggled) {
@@ -368,14 +373,26 @@
 							link.querySelector('.default').style.opacity = '0'; // Hide default image
 							link.querySelector('.hover').style.opacity = '1';  // Show hover image
 							toggled = true;
+
+							// Set a timeout to reset the toggle after a few seconds
+							timeoutId = setTimeout(() => {
+								link.querySelector('.default').style.opacity = '1'; // Show default image
+								link.querySelector('.hover').style.opacity = '0';  // Hide hover image
+								toggled = false; // Reset toggle state
+							}, 5000); // Adjust timeout duration (e.g., 5000ms = 5 seconds)
+
 						} else {
+							clearTimeout(timeoutId); // Clear any existing timeout
 							toggled = false; // Reset toggle state
+							link.querySelector('.default').style.opacity = '1'; // Show default image
+							link.querySelector('.hover').style.opacity = '0';  // Hide hover image
 						}
 						});
 					});
 
 					document.querySelectorAll('.image-container').forEach((container) => {
 						let toggled = false; // Track the toggle state
+						let timeoutId = null; // Store the timeout ID
 						container.addEventListener('click', (event) => {
 							const overlay = container.querySelector('.image-overlay');
 							const link = container.querySelector('a');
@@ -384,7 +401,14 @@
 								event.preventDefault(); // Prevent navigation on first tap
 								overlay.style.opacity = '0.95'; // Show the overlay
 								toggled = true; // Update toggle state
+
+								// Set a timeout to reset the toggle after a few seconds
+								timeoutId = setTimeout(() => {
+									overlay.style.opacity = '0'; // Hide the overlay
+									toggled = false; // Reset toggle state
+								}, 3000); // Adjust timeout duration (e.g., 5000ms = 5 seconds)
 							} else {
+								clearTimeout(timeoutId); // Clear any existing timeout
 								toggled = false; // Reset toggle state
 								overlay.style.opacity = '0'; // Hide the overlay
 								window.location.href = link.href; // Navigate to the link
