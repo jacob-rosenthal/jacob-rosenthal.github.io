@@ -30,6 +30,35 @@ footer, header, hgroup, menu, nav, section {
 	display: block;}
 
 
+/*  */
+.hover-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fits properly */
+  transition: opacity 0.3s ease;
+}
+
+.hover-image img.default {
+  opacity: 1; /* Show default image by default */
+}
+
+.hover-image img.hover {
+  opacity: 0; /* Hide hover image by default */
+}
+
+.hover-image:hover img.default {
+  opacity: 0; /* Hide default image on hover */
+}
+
+.hover-image:hover img.hover {
+  opacity: 1; /* Show hover image on hover */
+}
+
+
+/* change the hyperlink colors */
 a:link {
   color: #ff1ce5;
   background-color: transparent;
