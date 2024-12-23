@@ -356,6 +356,25 @@
 			});
 
 			</script>
+			<script>
+				if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+					// Only run on touch-screen devices
+					document.querySelectorAll('.hover-image, .image-container').forEach((link) => {
+						let toggled = false;
+
+						link.addEventListener('click', (event) => {
+						if (!toggled) {
+							event.preventDefault(); // Prevent navigation
+							link.querySelector('.default').style.opacity = '0'; // Hide default image
+							link.querySelector('.hover').style.opacity = '1';  // Show hover image
+							toggled = true;
+						} else {
+							toggled = false; // Reset toggle state
+						}
+						});
+					});
+					}
+			</script>
 
 	</body>
 </html>
