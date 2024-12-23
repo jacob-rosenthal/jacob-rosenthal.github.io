@@ -49,11 +49,13 @@ footer, header, hgroup, menu, nav, section {
   opacity: 0; /* Hide hover image by default */
 }
 
-.hover-image:hover img.default {
+.hover-image:hover img.default,
+.hover-image:active img.default {
   opacity: 0; /* Hide default image on hover */
 }
 
-.hover-image:hover img.hover {
+.hover-image:hover img.hover,
+.hover-image:active img.hover {
   opacity: 1; /* Show hover image on hover */
 }
 
@@ -2307,7 +2309,8 @@ input, select, textarea {
   background-color: whitesmoke;
 }
 
-.image-container:hover .image-overlay {
+.image-container:hover .image-overlay,
+.image-container:active .image-overlay {
   opacity: 0.95;
 }
 
