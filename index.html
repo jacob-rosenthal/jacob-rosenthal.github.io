@@ -50,7 +50,7 @@
 							</header>
 							<a href="#aboutme" class="jumplink pic hover-image" onclick="">
 								<img class="default" src="images/jacob.jpeg" />
-								<img class="hover" src="images/jacob_composite_image.jpg" />
+								<img class="hover" src="images/jacob_superpixel.jpg" />
 							</a>
 						</article>
 
@@ -361,6 +361,57 @@
 
 			</script>
 			<script>
+				// Define the random images array
+				const imageSet = [
+					'images/jacob_sam.png',
+					'images/jacob_superpixel.jpg',
+					// 'images/jacob_swirled.jpg',
+					'images/jacob_triangulated.jpg',
+					'images/jacob_depth.jpeg',
+					'images/jacob_dithered.jpg'
+				];
+
+				let shuffledImages = [];
+				let currentIndex = 0;
+
+				// Function to shuffle the images
+				function shuffleImages() {
+					shuffledImages = [...imageSet]; // Clone the image set
+					for (let i = shuffledImages.length - 1; i > 0; i--) {
+						const j = Math.floor(Math.random() * (i + 1));
+						[shuffledImages[i], shuffledImages[j]] = [shuffledImages[j], shuffledImages[i]]; // Swap elements
+					}
+					currentIndex = 0; // Reset the index after shuffle
+				}
+
+				// Initialize the shuffled images
+				shuffleImages();
+
+				// Apply hover logic to all devices
+				document.querySelectorAll('.hover-image').forEach((link) => {
+					const defaultImage = link.querySelector('.default');
+					const hoverImage = link.querySelector('.hover');
+
+					// On hover (for non-touch devices)
+					link.addEventListener('mouseover', () => {
+						const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
+						hoverImage.src = randomImage; // Set a random image
+
+						defaultImage.style.opacity = '0'; // Hide the default image
+						hoverImage.style.opacity = '1'; // Show the hover image
+
+						currentIndex++; // Move to the next image
+						if (currentIndex >= shuffledImages.length) {
+							shuffleImages(); // Reshuffle if all images are used
+						}
+					});
+
+					link.addEventListener('mouseout', () => {
+						defaultImage.style.opacity = '1'; // Show the default image
+						hoverImage.style.opacity = '0'; // Hide the hover image
+					});
+				});
+
 				if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
 					// Only run on touch-screen devices
 					document.querySelectorAll('.hover-image').forEach((link) => {
@@ -370,9 +421,18 @@
 						link.addEventListener('click', (event) => {
 						if (!toggled) {
 							event.preventDefault(); // Prevent navigation
+							// Choose a new random image each time
+							const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
+							hoverImage.src = randomImage; // Set the random image
+
 							link.querySelector('.default').style.opacity = '0'; // Hide default image
 							link.querySelector('.hover').style.opacity = '1';  // Show hover image
 							toggled = true;
+
+							currentIndex++; // Move to the next image
+							if (currentIndex >= shuffledImages.length) {
+								shuffleImages(); // Reshuffle if all images are used
+							}
 
 							// Set a timeout to reset the toggle after a few seconds
 							timeoutId = setTimeout(() => {
