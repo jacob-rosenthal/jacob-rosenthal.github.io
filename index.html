@@ -412,45 +412,47 @@
 						hoverImage.style.opacity = '0'; // Hide hover image
 						defaultImage.style.opacity = '1'; // Show default image
 					});
-				});
+				
+					// Mobile: Tap to trigger hover effect
+					// Only run on touch-screen devices
+					if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+						image.addEventListener('click', () => {
+							// Clear any existing timeout
+							if (timeoutId) {
+								clearTimeout(timeoutId);
+							}
 
-				// Mobile: Tap to trigger hover effect
-				// Only run on touch-screen devices
+							// Reset and restart hover effect
+							if (hoverActive) {
+								hoverImage.style.opacity = '0'; // End the current hover
+								defaultImage.style.opacity = '1'; // Show default image
+								hoverActive = false;
+							}
+
+							// Activate hover effect
+							// Choose a new random image each time
+							const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
+							hoverImage.src = randomImage; // Set the random image
+							currentIndex++; // Move to the next image
+							if (currentIndex >= shuffledImages.length) {
+								shuffleImages(); // Reshuffle if all images are used
+							}
+							
+							hoverImage.style.opacity = '1'; // Show hover image
+							defaultImage.style.opacity = '0'; // Hide default image
+							hoverActive = true;
+							
+							// Set a timeout to end the hover effect after 1 second
+							timeoutId = setTimeout(() => {
+								hoverImage.style.opacity = '0'; // Hide hover image
+								defaultImage.style.opacity = '1'; // Show default image
+								hoverActive = false; // Reset hover state
+							}, 1000); // Duration: 1 second
+						});
+					}
+				});	
+				
 				if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-					image.addEventListener('click', () => {
-						// Clear any existing timeout
-						if (timeoutId) {
-							clearTimeout(timeoutId);
-						}
-
-						// Reset and restart hover effect
-						if (hoverActive) {
-							hoverImage.style.opacity = '0'; // End the current hover
-							defaultImage.style.opacity = '1'; // Show default image
-							hoverActive = false;
-						}
-
-						// Activate hover effect
-						// Choose a new random image each time
-						const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
-						hoverImage.src = randomImage; // Set the random image
-						currentIndex++; // Move to the next image
-						if (currentIndex >= shuffledImages.length) {
-							shuffleImages(); // Reshuffle if all images are used
-						}
-						
-						hoverImage.style.opacity = '1'; // Show hover image
-						defaultImage.style.opacity = '0'; // Hide default image
-						hoverActive = true;
-						
-						// Set a timeout to end the hover effect after 1 second
-						timeoutId = setTimeout(() => {
-							hoverImage.style.opacity = '0'; // Hide hover image
-							defaultImage.style.opacity = '1'; // Show default image
-							hoverActive = false; // Reset hover state
-						}, 1000); // Duration: 1 second
-					});
-
 					document.querySelectorAll('.image-container').forEach((container) => {
 						let toggled = false; // Track the toggle state
 						let timeoutId = null; // Store the timeout ID
@@ -476,7 +478,6 @@
 							}
 						});
 					});
-
 				}
 			</script>
 	</body>
