@@ -388,66 +388,67 @@
 				shuffleImages();
 
 				// Apply hover logic to all devices
-				document.querySelectorAll('.hover-image').forEach((link) => {
-					const defaultImage = link.querySelector('.default');
-					const hoverImage = link.querySelector('.hover');
+				document.querySelectorAll('.hover-image').forEach((image) => {
+					const defaultImage = image.querySelector('.default');
+					const hoverImage = image.querySelector('.hover');
 
-					// On hover (for non-touch devices)
-					link.addEventListener('mouseover', () => {
+					let timeoutId = null; // To store the timeout for resetting hover
+    				let hoverActive = false; // To track if hover effect is active
+					
+					// Desktop: Hover effect
+					image.addEventListener('mouseover', () => {
 						const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
 						hoverImage.src = randomImage; // Set a random image
-
-						defaultImage.style.opacity = '0'; // Hide the default image
-						hoverImage.style.opacity = '1'; // Show the hover image
-
 						currentIndex++; // Move to the next image
 						if (currentIndex >= shuffledImages.length) {
 							shuffleImages(); // Reshuffle if all images are used
 						}
+
+						hoverImage.style.opacity = '1'; // Show hover image
+						defaultImage.style.opacity = '0'; // Hide default image
 					});
 
-					link.addEventListener('mouseout', () => {
-						defaultImage.style.opacity = '1'; // Show the default image
-						hoverImage.style.opacity = '0'; // Hide the hover image
+					image.addEventListener('mouseout', () => {
+						hoverImage.style.opacity = '0'; // Hide hover image
+						defaultImage.style.opacity = '1'; // Show default image
 					});
 				});
 
+				// Mobile: Tap to trigger hover effect
+				// Only run on touch-screen devices
 				if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-					// Only run on touch-screen devices
-					document.querySelectorAll('.hover-image').forEach((link) => {
-						let toggled = false;
-						let timeoutId = null; // Store the timeout ID
-
-						link.addEventListener('click', (event) => {
-						if (!toggled) {
-							event.preventDefault(); // Prevent navigation
-							// Choose a new random image each time
-							const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
-							hoverImage.src = randomImage; // Set the random image
-
-							link.querySelector('.default').style.opacity = '0'; // Hide default image
-							link.querySelector('.hover').style.opacity = '1';  // Show hover image
-							toggled = true;
-
-							currentIndex++; // Move to the next image
-							if (currentIndex >= shuffledImages.length) {
-								shuffleImages(); // Reshuffle if all images are used
-							}
-
-							// Set a timeout to reset the toggle after a few seconds
-							timeoutId = setTimeout(() => {
-								link.querySelector('.default').style.opacity = '1'; // Show default image
-								link.querySelector('.hover').style.opacity = '0';  // Hide hover image
-								toggled = false; // Reset toggle state
-							}, 5000); // Adjust timeout duration (e.g., 5000ms = 5 seconds)
-
-						} else {
-							clearTimeout(timeoutId); // Clear any existing timeout
-							toggled = false; // Reset toggle state
-							link.querySelector('.default').style.opacity = '1'; // Show default image
-							link.querySelector('.hover').style.opacity = '0';  // Hide hover image
+					image.addEventListener('click', () => {
+						// Clear any existing timeout
+						if (timeoutId) {
+							clearTimeout(timeoutId);
 						}
-						});
+
+						// Reset and restart hover effect
+						if (hoverActive) {
+							hoverImage.style.opacity = '0'; // End the current hover
+							defaultImage.style.opacity = '1'; // Show default image
+							hoverActive = false;
+						}
+
+						// Activate hover effect
+						// Choose a new random image each time
+						const randomImage = shuffledImages[currentIndex]; // Use the next image in the shuffled array
+						hoverImage.src = randomImage; // Set the random image
+						currentIndex++; // Move to the next image
+						if (currentIndex >= shuffledImages.length) {
+							shuffleImages(); // Reshuffle if all images are used
+						}
+						
+						hoverImage.style.opacity = '1'; // Show hover image
+						defaultImage.style.opacity = '0'; // Hide default image
+						hoverActive = true;
+						
+						// Set a timeout to end the hover effect after 1 second
+						timeoutId = setTimeout(() => {
+							hoverImage.style.opacity = '0'; // Hide hover image
+							defaultImage.style.opacity = '1'; // Show default image
+							hoverActive = false; // Reset hover state
+						}, 1000); // Duration: 1 second
 					});
 
 					document.querySelectorAll('.image-container').forEach((container) => {
@@ -476,7 +477,7 @@
 						});
 					});
 
-					}
+				}
 			</script>
 	</body>
 </html>
